@@ -11,5 +11,6 @@ router.post('/postTask', controller.postTask);
 router.get('/getTasks/:name', controller.getTasks);
 router.delete('/deleteTask/:user/:id', controller.deleteTask);
 router.put('/updateTask/:user/:id', controller.updateTask);
+router.put('/updateCheckStatus/:user/:id', controller.updateCheckStatus);
 
 module.exports = router;

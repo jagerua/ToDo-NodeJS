@@ -140,6 +140,27 @@ class authController {
         }
     }
 
+    async updateCheckStatus(req, res) {
+        const taskId = req.params.id;
+        const doneStatus = req.body.done;
+        // const doneStatus = req.body.done;
+        console.log('Here', doneStatus);
+
+        const task = await Tasks.findOneAndUpdate({_id: taskId}, {done: doneStatus, updateDate: Date.now()});
+
+        const updateed = await Tasks.findOne({_id: taskId});
+        
+        try {
+            console.log({operation: "update", tasks: updateed})
+            res.status(200).json({code: 200, status: "Done", operation: "update", task: updateed});
+        } catch(err) {
+            res.status(400).json({
+                message: "Error",
+                err: err,
+            })
+        }
+    }
+
     async authUser(req, res) {
        try {
             // const DBToken = await userToken.findOne({token});
